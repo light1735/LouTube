@@ -81,7 +81,6 @@ export function getList(payload) {
     }
 
     return api.get("https://www.googleapis.com/youtube/v3/videos", newPayload).then(res => {
-        console.log(res);
         return res;
     }).catch(err => {
         return Promise.reject(err);
