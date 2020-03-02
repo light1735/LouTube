@@ -30,8 +30,8 @@ export default {
             isMobile: false,
             router: {
                 home: Router.home.path,
-                collect: Router.collect.path
-            }
+                collect: Router.collect.path,
+            },
         };
     },
     mounted() {
@@ -44,18 +44,18 @@ export default {
         },
         onResize() {
             this.isMobile = window.innerWidth <= 500;
-        }
+        },
     },
     beforeDestroy() {
         if (typeof window !== "undefined") {
             window.removeEventListener("resize", this.onResize, {
-                passive: true
+                passive: true,
             });
         }
     },
     components: {
-        Menu
-    }
+        Menu,
+    },
 };
 </script>
 
@@ -70,6 +70,7 @@ $phone-size: 500px;
         height: $height-m;
         background-color: gray;
         position: fixed;
+        z-index: 10;
         top: 0;
 
         @media (max-width: $phone-size) {

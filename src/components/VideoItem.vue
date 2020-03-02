@@ -1,5 +1,5 @@
 <template>
-    <div id="VideoItem" :style="{width: item.snippet.thumbnails.medium.width + 'px'}">
+    <div id="VideoItem" :style="{ width: item.snippet.thumbnails.medium.width + 'px' }">
         <div class="img">
             <img :src="item.snippet.thumbnails.medium.url" />
             <!-- :style="{width: item.snippet.thumbnails.medium.width, height: item.snippet.thumbnails.medium.height}" -->
@@ -8,11 +8,11 @@
         <div class="body">
             <div class="title" v-text="item.snippet.title" />
             <div class="description" v-text="item.snippet.description" />
-            <template v-if="isCollect(item.id)">
-                <button class="collect isCollect">已收藏</button>
+            <template v-if="item.isCollect">
+                <button class="collect isCollect" @click="didTapCollect(item.id)">已收藏</button>
             </template>
             <template v-else>
-                <button class="collect">收藏</button>
+                <button class="collect" @click="didTapCollect(item.id)">收藏</button>
             </template>
         </div>
     </div>
@@ -20,38 +20,64 @@
 
 <script>
 import { getList } from "@/api/api";
-import { mapState, mapActions, mapGetters } from "vuex";
+import { StorageKey, getLocal, setLocal } from "@/utils/storage";
+import { mapState, mapActions, mapGetters, mapMutations } from "vuex";
 import moment from "moment";
+import Router from "@/router/config";
 
 export default {
     name: "VideoItem",
     props: {
-        item: Object
+        item: Object,
+    },
+    data() {
+        return {
+            video: {},
+            time: "",
+        };
     },
     methods: {
         ...mapActions("video", ["getVideo"]),
+        ...mapMutations("video", ["setCollect", "removeCollect"]),
         formatDuration: duration => {
             const time = moment.duration(duration);
             const format = time._data.hour > 0 ? "H:m:s" : "m:s";
             return moment(time.asMilliseconds()).format(format);
         },
-        isCollect: id => {
-            return true;
-        }
+        isCollect(id) {
+            if (this.collect && this.collect[id]) {
+                return this.collect[id];
+            }
+            return false;
+        },
+        didTapCollect(id) {
+            if (this.item.isCollect) {
+                this.removeCollect(id);
+                this.$set(this.item, "isCollect", false);
+            } else {
+                this.$set(this.item, "isCollect", true);
+                this.setCollect({ id: id, item: this.item });
+            }
+        },
+        playVideo(id) {
+            console.log("Test");
+
+            this.$router.push({ name: Router.playVideo.name, query: { id: id } });
+        },
     },
-    data() {
-        return {
-            video: {},
-            time: ""
-        };
+    computed: {
+        ...mapGetters("video", ["getCollect"]),
     },
     mounted() {
         this.time = this.formatDuration(this.item.contentDetails.duration);
+        this.getCollect[this.item.id]
+            ? this.$set(this.item, "isCollect", true)
+            : this.$set(this.item, "isCollect", false);
         // this.getVideo().then(res => {
         //     this.video = res;
         //     console.log(res);
         // });
-    }
+    },
 };
 </script>
 
@@ -81,11 +107,13 @@ export default {
 
     .body {
         text-align: left;
+        height: 110px;
 
         .title {
             font-size: 16px;
             font-weight: bold;
             margin: 4px;
+            height: 32px;
         }
 
         .description {

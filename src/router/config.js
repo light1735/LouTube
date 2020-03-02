@@ -1,10 +1,14 @@
 export default Object.freeze({
     home: {
         name: "home",
-        path: "/home"
+        path: "/home",
     },
     collect: {
         name: "collect",
-        path: "/collect"
+        path: "/collect",
+    },
+    playVideo: {
+        name: "playVideo",
+        path: "/playVideo",
     },
 });

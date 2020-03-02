@@ -28,16 +28,14 @@ export function setSession(key, value) {
 }
 
 export function getSession(key) {
-    var value = sessionStorage.getItem(key)
+    var value = sessionStorage.getItem(key);
     if (null === value) {
-        return ""
+        return "";
     }
 
     try {
         value = JSON.parse(value);
-    } catch (error) {
-
-    }
+    } catch (error) {}
 
     return value;
 }
@@ -51,7 +49,7 @@ export function removeSession(key) {
  */
 
 export function setLocal(key, value) {
-    var newValue = value
+    var newValue = value;
     if (check(key)) {
         return false;
     }
@@ -64,16 +62,14 @@ export function setLocal(key, value) {
 }
 
 export function getLocal(key) {
-    var value = localStorage.getItem(key)
+    var value = localStorage.getItem(key);
     if (null === value) {
-        return ""
+        return "";
     }
 
     try {
         value = JSON.parse(value);
-    } catch (error) {
-
-    }
+    } catch (error) {}
 
     return value;
 }
