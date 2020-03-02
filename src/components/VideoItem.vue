@@ -28,12 +28,12 @@ import Router from "@/router/config";
 export default {
     name: "VideoItem",
     props: {
-        item: Object,
+        item: Object
     },
     data() {
         return {
             video: {},
-            time: "",
+            time: ""
         };
     },
     methods: {
@@ -60,13 +60,14 @@ export default {
             }
         },
         playVideo(id) {
-            console.log("Test");
-
-            this.$router.push({ name: Router.playVideo.name, query: { id: id } });
-        },
+            this.$router.push({
+                name: Router.playVideo.name,
+                query: { id: id }
+            });
+        }
     },
     computed: {
-        ...mapGetters("video", ["getCollect"]),
+        ...mapGetters("video", ["getCollect"])
     },
     mounted() {
         this.time = this.formatDuration(this.item.contentDetails.duration);
@@ -77,7 +78,7 @@ export default {
         //     this.video = res;
         //     console.log(res);
         // });
-    },
+    }
 };
 </script>
 
@@ -113,7 +114,13 @@ export default {
             font-size: 16px;
             font-weight: bold;
             margin: 4px;
-            height: 32px;
+            overflow: hidden;
+            white-space: normal;
+            word-break: break-all;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
 
         .description {
