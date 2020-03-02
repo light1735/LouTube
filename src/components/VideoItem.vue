@@ -114,6 +114,8 @@ export default {
             font-size: 16px;
             font-weight: bold;
             margin: 4px;
+            height: 32px;
+
             overflow: hidden;
             white-space: normal;
             word-break: break-all;
@@ -126,6 +128,9 @@ export default {
         .description {
             font-size: 12px;
             color: rgba($color: #000000, $alpha: 0.7);
+            height: 32px;
+            margin: 4px;
+
             overflow: hidden;
             white-space: normal;
             word-break: break-all;
