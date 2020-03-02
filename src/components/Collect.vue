@@ -44,5 +44,9 @@ export default {
         flex-basis: 21%;
         margin: 8px;
     }
+
+    @media (max-width: 500px) {
+        justify-content: center;
+    }
 }
 </style>

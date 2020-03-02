@@ -72,6 +72,7 @@ $phone-size: 500px;
         position: fixed;
         z-index: 10;
         top: 0;
+        left: 0;
 
         @media (max-width: $phone-size) {
             height: $height-s;

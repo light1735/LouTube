@@ -72,6 +72,10 @@ export default {
     flex-wrap: wrap;
     justify-content: flex-start;
 
+    @media (max-width: 500px) {
+        justify-content: center;
+    }
+
     .item {
         flex-basis: 21%;
         margin: 8px;
