@@ -88,6 +88,7 @@ $phone-size: 500px;
                 float: none;
                 font-size: 32px;
                 margin-left: 0;
+                line-height: $height-s;
             }
         }
 
@@ -95,7 +96,7 @@ $phone-size: 500px;
             font-size: 24px;
             height: 100%;
             margin-right: 160px;
-            line-height: 56px;
+            line-height: $height-m;
 
             a:first-child {
                 margin-right: 8px;
@@ -117,7 +118,7 @@ $phone-size: 500px;
 
         .sideMenu {
             position: fixed;
-            top: 4px;
+            top: 10px;
             right: 16px;
         }
     }
