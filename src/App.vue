@@ -7,12 +7,16 @@
 
 <script>
 import NavBar from "@/components/NavBar.vue";
+import Router from "@/router/config";
 
 export default {
     name: "app",
-    components: {
-        NavBar,
+    mounted() {
+        this.$router.push({ name: Router.home.name });
     },
+    components: {
+        NavBar
+    }
 };
 </script>
 

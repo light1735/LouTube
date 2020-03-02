@@ -14,11 +14,11 @@ import VideoItem from "./VideoItem";
 export default {
     name: "collect",
     computed: {
-        ...mapGetters("video", ["getCollect"]),
+        ...mapGetters("video", ["getCollect"])
     },
     data() {
         return {
-            videos: [],
+            videos: []
         };
     },
     mounted() {
@@ -28,8 +28,8 @@ export default {
         this.videos = Array.from(values(this.getCollect));
     },
     components: {
-        VideoItem,
-    },
+        VideoItem
+    }
 };
 </script>
 
@@ -38,15 +38,11 @@ export default {
 .collect {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
 
     .item {
         flex-basis: 21%;
         margin: 8px;
-    }
-
-    @media (max-width: 500px) {
-        justify-content: center;
     }
 }
 </style>

@@ -30,22 +30,25 @@ export default {
             const end = page * this.perPage;
 
             if (end > items.length && end <= 100) {
-                this.getVideo({ maxResults: 50, pageToken: this.videoGetter.nextPageToken }).then(res => {
+                this.getVideo({
+                    maxResults: 50,
+                    pageToken: this.videoGetter.nextPageToken
+                }).then(res => {
                     this.videos = res.items.slice(start, end);
                 });
             } else {
                 this.videos = items.slice(start, end);
             }
-        },
+        }
     },
     computed: {
-        ...mapGetters("video", { videoGetter: "getVideo" }),
+        ...mapGetters("video", { videoGetter: "getVideo" })
     },
     data() {
         return {
             videos: [],
             perPage: 12,
-            isMobile: false,
+            isMobile: false
         };
     },
     mounted() {
@@ -60,8 +63,8 @@ export default {
         this.isMobile = window.innerWidth <= 500;
     },
     components: {
-        VideoItem,
-    },
+        VideoItem
+    }
 };
 </script>
 
@@ -70,11 +73,7 @@ export default {
 .home {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-
-    @media (max-width: 500px) {
-        justify-content: center;
-    }
+    justify-content: center;
 
     .item {
         flex-basis: 21%;

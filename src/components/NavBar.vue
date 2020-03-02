@@ -1,9 +1,7 @@
 <template>
     <div id="NavBar">
         <div class="container">
-            <div class="logo">
-                <span>LouTube</span>
-            </div>
+            <div class="logo">LouTube</div>
             <template v-if="isMobile">
                 <div class="sideMenu" @click="onMenuSelect">
                     <Menu ref="menu" />
@@ -30,8 +28,8 @@ export default {
             isMobile: false,
             router: {
                 home: Router.home.path,
-                collect: Router.collect.path,
-            },
+                collect: Router.collect.path
+            }
         };
     },
     mounted() {
@@ -44,18 +42,18 @@ export default {
         },
         onResize() {
             this.isMobile = window.innerWidth <= 500;
-        },
+        }
     },
     beforeDestroy() {
         if (typeof window !== "undefined") {
             window.removeEventListener("resize", this.onResize, {
-                passive: true,
+                passive: true
             });
         }
     },
     components: {
-        Menu,
-    },
+        Menu
+    }
 };
 </script>
 
@@ -84,6 +82,7 @@ $phone-size: 500px;
             float: left;
             margin-left: 16px;
             height: 100%;
+            line-height: $height-m;
 
             @media (max-width: $phone-size) {
                 float: none;
